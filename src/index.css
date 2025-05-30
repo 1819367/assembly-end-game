@@ -19,10 +19,17 @@ main {
 
 /* Typography */
 
-.header-title {
-  color: #f9f4da;
+h1,
+h2,
+p {
+  margin: 0;
   font-size: 1.25rem;
+  color: #f9f4da;
   font-weight: 500;
+}
+
+.header-title {
+  margin-block: .5rem; /*adds margin top and bottom*/
 }
 
 .subtitle {
@@ -31,4 +38,26 @@ main {
   line-height: 1.6;
   max-width: 350px;
   margin: 0 auto;
+}
+
+.section-game-status {
+  background:#10A95B;
+  padding: 6px 6PX;
+  border-radius: 4px;
+  width: auto; 
+  max-width: 100%;
+  margin-block: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  h1,
+  h2,
+  p {
+  font-size: 1.75rem;
+}
+
+  .section-game-status {
+    min-width: 450px;
+    margin: 1.5rem auto;
+  }
 }

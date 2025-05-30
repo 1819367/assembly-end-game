@@ -7,8 +7,9 @@ export default function App() {
   return (
       <main>   
         <Header />
-        <section className='section-status'>
-          <p>Game goes here</p>
+        <section className='section-game-status'>
+          <h2>You win!</h2>
+          <p>Well done! 🎉</p>
         </section>
       </main>
   )
