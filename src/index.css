@@ -45,7 +45,7 @@ p {
   padding: 6px 6PX;
   border-radius: 4px;
   width: auto; 
-  max-width: 100%;
+  max-width: 70%;
   margin-block: 1.5rem;
 }
 
@@ -60,4 +60,28 @@ p {
     min-width: 450px;
     margin: 1.5rem auto;
   }
+}
+
+.section-language-container {
+  margin: 0 auto;
+  width: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .section-language-container {
+      max-width: 350px;
+  }
+}
+
+.span-languages {
+  font-family: "Hanken Grotesk", Arial, Helvetica, sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  padding: .5em 1em;
+  border-radius: 3px;
+  border: none;
 }
