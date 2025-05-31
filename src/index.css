@@ -63,7 +63,7 @@ p {
 }
 
 .section-language-container {
-  margin: 0 auto;
+  margin: 0 auto 36px;
   width: auto;
   display: flex;
   flex-wrap: wrap;
@@ -84,4 +84,24 @@ p {
   padding: .5em 1em;
   border-radius: 3px;
   border: none;
+}
+
+.section-word-display {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+} 
+
+.span-current-word {
+  width: 40px;
+  height: 40px;
+  background: #323232;
+  border-bottom: 1px solid #f9f4da;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  padding: .5em;
 }
