@@ -5,7 +5,10 @@ import { languagesData } from './languages';
 
 export default function App() {
   const [currentWord, setCurrentWord] = useState('react') //initialize state
+
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
  
+  //display the language from the languages.js file
   const languagesElement = languagesData.map(language => (
     <span
       key={language.name}
@@ -26,19 +29,37 @@ export default function App() {
     </span>
   ))
 
+  //display the keyboard, change to uppercase
+  const keyboardElements = [...alphabet].map((letter) => (
+    <button key={letter} className='btn btn-primary'>
+      {letter.toUpperCase()}
+    </button>
+  ));
+
   return (
       <main>   
+
         <Header />
+
         <section className='section-game-status'>
           <h2>You win!</h2>
           <p>Well done! 🎉</p>
         </section>
+
         <section className='section-language-container'>
             {languagesElement}
         </section>
+
         <section className='section-word-display'>
             {letterElements}
         </section>
+
+        <section className='section-keyboard'>
+          {keyboardElements}
+        </section>
+
+        <button className='btn btn-new-game'>New Game</button>
+
       </main>
   )
 }
