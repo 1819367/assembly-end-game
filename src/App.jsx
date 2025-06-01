@@ -5,9 +5,21 @@ import { languagesData } from './languages';
 
 export default function App() {
   const [currentWord, setCurrentWord] = useState('react') //initialize state
+  const [ guessedLetters, setGuessedLetters ] = useState([]) //initialize an empty array
+  // console.log(guessedLetters) //
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
- 
+
+  //create a new array to hold the guessed letters, prevent duplicate letters
+  function addGuessedLetter(letter) {
+    setGuessedLetters(prevLetters => {
+       if(!prevLetters.includes(letter)) {  //If the letter is not already in the array
+        return [...prevLetters, letter]  // Add the letter to the array
+      }
+        return prevLetters //Otherwise, return the array unchanged
+    })
+  }
+
   //display the language from the languages.js file
   const languagesElement = languagesData.map(language => (
     <span
@@ -31,7 +43,11 @@ export default function App() {
 
   //display the keyboard, change to uppercase
   const keyboardElements = [...alphabet].map((letter) => (
-    <button key={letter} className='btn btn-primary'>
+    <button 
+      key={letter}
+      className='btn btn-primary'
+      onClick={() =>  addGuessedLetter(letter)} //pass the letter as a string
+      >
       {letter.toUpperCase()}
     </button>
   ));
@@ -58,7 +74,8 @@ export default function App() {
           {keyboardElements}
         </section>
 
-        <button className='btn btn-new-game'>New Game</button>
+        <button 
+          className='btn btn-new-game'>New Game</button>
 
       </main>
   )
