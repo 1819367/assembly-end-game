@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import { languagesData } from './languages';
+import clsx from 'clsx'
 
 export default function App() {
   const [currentWord, setCurrentWord] = useState('react') //initialize state
@@ -19,7 +20,7 @@ export default function App() {
         return prevLetters //Otherwise, return the array unchanged
     })
   }
-
+   
   //display the language from the languages.js file
   const languagesElement = languagesData.map(language => (
     <span
@@ -28,7 +29,7 @@ export default function App() {
         backgroundColor: language.backgroundColor,
         color: language.color
       }}
-      className='span-languages'
+      className={clsx('span-languages')}
     >
       {language.name}
     </span>
@@ -36,46 +37,65 @@ export default function App() {
 
   //turn the current word into an array, and map over the letters, set the index as the key prop
   const letterElements = [...currentWord].map((letter, index) => (
-    <span key={index} className='span-current-word'>
+    <span 
+      key={index} 
+      className={clsx('span-current-word')}
+    >
       {letter}
     </span>
   ))
 
   //display the keyboard, change to uppercase
-  const keyboardElements = [...alphabet].map((letter) => (
-    <button 
-      key={letter}
-      className='btn btn-primary'
-      onClick={() =>  addGuessedLetter(letter)} //pass the letter as a string
-      >
-      {letter.toUpperCase()}
-    </button>
-  ));
+    const keyboardElements = [...alphabet].map((letter) => {
+    //update the color of the keyboard key when the letter is correct or incorrect
+    const isGuessed = guessedLetters.includes(letter); //Has this letter been guessed yet?
+    const isCorrect = isGuessed && currentWord.includes(letter); //The letter has been guessed and it is in the current word
+    const isIncorrect = isGuessed && !currentWord.includes(letter); //The letter has been guessed and it is NOT in the current word
+
+    return (
+      <button 
+        key={letter}
+        className={clsx(
+          'btn',
+          'btn-keyboard',
+          {
+            'btn-keyboard_correct': isCorrect,
+            'btn-keyboard_incorrect': isIncorrect
+          }
+        )}
+        onClick={() =>  addGuessedLetter(letter)} //pass the letter as a string
+        disabled={isGuessed}
+        >
+          {letter.toUpperCase()}
+      </button>
+    );
+});
 
   return (
       <main>   
 
         <Header />
 
-        <section className='section-game-status'>
+        <section className={clsx('section-game-status')}>
           <h2>You win!</h2>
           <p>Well done! 🎉</p>
         </section>
 
-        <section className='section-language-container'>
+        <section className={clsx('section-language-container')}>
             {languagesElement}
         </section>
 
-        <section className='section-word-display'>
+        <section className={clsx('section-word-display')}>
             {letterElements}
         </section>
 
-        <section className='section-keyboard'>
+        <section className={clsx('section-keyboard')}>
           {keyboardElements}
         </section>
 
-        <button 
-          className='btn btn-new-game'>New Game</button>
+        <button className={clsx('btn', 'btn-new-game')}>
+            New Game
+        </button>
 
       </main>
   )

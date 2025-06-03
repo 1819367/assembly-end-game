@@ -119,7 +119,7 @@ p {
 @media (min-width: 600px) {
   .section-keyboard {
       margin: 0 auto;
-      max-width: 475px;
+      max-width: 425px;
   }
 }
 
@@ -141,9 +141,17 @@ p {
   transform: scale(1.1)
 }
 
-.btn-primary {
+.btn-keyboard {
   color: #282726;
   background: #fcba29;
+}
+
+.btn-keyboard_correct {
+  background: #10A95B;
+}
+
+.btn-keyboard_incorrect {
+  background: #EC5D49;
 }
 
 .btn-new-game {
