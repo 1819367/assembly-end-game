@@ -36,14 +36,11 @@ export default function App() {
   ))
 
   //turn the current word into an array, and map over the letters, set the index as the key prop
-  const letterElements = [...currentWord].map((letter, index) => (
-    <span 
-      key={index} 
-      className={clsx('span-current-word')}
-    >
-      {letter}
-    </span>
-  ))
+  const letterElements = [...currentWord].map((letter, index) =>  (
+    <span key={index} className={clsx('span-current-word')}>
+      {guessedLetters.includes(letter) ? letter.toUpperCase() : <span> </span>} 
+    </span> 
+    ));
 
   //display the keyboard, change to uppercase
     const keyboardElements = [...alphabet].map((letter) => {
