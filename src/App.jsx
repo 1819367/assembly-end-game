@@ -5,10 +5,17 @@ import { languagesData } from './languages';
 import clsx from 'clsx'
 
 export default function App() {
+  // State values
   const [currentWord, setCurrentWord] = useState('react') //initialize state
   const [ guessedLetters, setGuessedLetters ] = useState([]) //initialize an empty array
   // console.log(guessedLetters) //
 
+  //Derived Values
+ const wrongGuessCount = 
+    guessedLetters.filter(letter => !currentWord.includes(letter)).length;
+ console.log(wrongGuessCount)
+
+  // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
   //create a new array to hold the guessed letters, prevent duplicate letters
