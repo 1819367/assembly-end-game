@@ -13,7 +13,7 @@ export default function App() {
   //Derived Values
  const wrongGuessCount = 
     guessedLetters.filter(letter => !currentWord.includes(letter)).length;
- console.log(wrongGuessCount)
+//  console.log(wrongGuessCount)
 
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -29,18 +29,26 @@ export default function App() {
   }
    
   //display the language from the languages.js file
-  const languagesElement = languagesData.map(language => (
-    <span
-      key={language.name}
-      style={{
-        backgroundColor: language.backgroundColor,
-        color: language.color
-      }}
-      className={clsx('span-languages')}
-    >
-      {language.name}
-    </span>
-  ))
+  const languagesElement = languagesData.map((language, index) => {
+    const isLanguageLost = index < wrongGuessCount;
+    // console.log('index:', index, 'isLanguageLost:', isLanguageLost) //to test the logic
+    
+    return (
+      <span
+        key={language.name}
+        style={{
+          backgroundColor: language.backgroundColor,
+          color: language.color
+        }}
+        className={clsx(
+          'span-languages',
+          isLanguageLost && 'span-languages-lost'
+        )}
+      >
+        {language.name}
+      </span>
+  )
+})
 
   //turn the current word into an array, and map over the letters, set the index as the key prop
   const letterElements = [...currentWord].map((letter, index) =>  (

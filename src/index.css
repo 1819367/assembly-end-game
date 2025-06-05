@@ -83,6 +83,24 @@ p {
   padding: .5em 1em;
   border-radius: 3px;
   border: none;
+  position: relative; /*added for overlay*/
+}
+
+/* Dimmed overlay with skull on "lost" languages */
+.span-languages-lost::before {
+  content: "💀";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 0.85rem;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7); /*this greys 'out' with an overlay opacity of 70%*/
+  z-index: 1;
+  pointer-events: none;
 }
 
 .section-word-display {
