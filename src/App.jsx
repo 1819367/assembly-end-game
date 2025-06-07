@@ -8,15 +8,21 @@ export default function App() {
   // State values
   const [currentWord, setCurrentWord] = useState('react') //initialize state
   const [ guessedLetters, setGuessedLetters ] = useState([]) //initialize an empty array
-  // console.log(guessedLetters) //
 
-  //Derived Values
- const wrongGuessCount = 
+  //Derived Values 
+  const wrongGuessCount = 
     guessedLetters.filter(letter => !currentWord.includes(letter)).length;
-//  console.log(wrongGuessCount)
 
+  const isGameWon = 
+    currentWord.split("").every(letter => guessedLetters.includes(letter));
+  
+  const isGameLost = 
+    wrongGuessCount >= languagesData.length - 1;
+
+  const isGameOver = isGameWon || isGameLost;
+  
   // Static values
-  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+  const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
   //create a new array to hold the guessed letters, prevent duplicate letters
   function addGuessedLetter(letter) {
@@ -31,10 +37,10 @@ export default function App() {
   //display the language from the languages.js file
   const languagesElement = languagesData.map((language, index) => {
     const isLanguageLost = index < wrongGuessCount;
-    // console.log('index:', index, 'isLanguageLost:', isLanguageLost) //to test the logic
     
     return (
       <span
+        aria-label= {isLanguageLost ? "Lost language" : language.name}
         key={language.name}
         style={{
           backgroundColor: language.backgroundColor,
@@ -66,6 +72,7 @@ export default function App() {
 
     return (
       <button 
+        aria-label={`Guess letter ${letter.toUpperCase()}`}
         key={letter}
         className={clsx(
           'btn',
@@ -88,7 +95,7 @@ export default function App() {
 
         <Header />
 
-        <section className={clsx('section-game-status')}>
+        <section aria-live="polite" className={clsx('section-game-status')}>
           <h2>You win!</h2>
           <p>Well done! 🎉</p>
         </section>
@@ -105,9 +112,11 @@ export default function App() {
           {keyboardElements}
         </section>
 
-        <button className={clsx('btn', 'btn-new-game')}>
+      { isGameOver ? 
+        <button aria-label='Start a new game' className={clsx('btn', 'btn-new-game')}>
             New Game
-        </button>
+        </button> :
+        null}
 
       </main>
   )
