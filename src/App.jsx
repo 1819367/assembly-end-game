@@ -95,11 +95,35 @@ export default function App() {
 
         <Header />
 
-        <section aria-live="polite" className={clsx('section-game-status')}>
-          <h2>You win!</h2>
-          <p>Well done! 🎉</p>
+        <section 
+          aria-live="polite" 
+          role="status"
+          className={clsx(
+            'section-game-status',
+          {
+            'section-game-status_won': isGameWon,
+            'section-game-status_lost': isGameLost
+          }  
+          )}
+        >
+          {isGameOver ? (
+              isGameWon ? (
+                <>
+                  <h2>You win!</h2>
+                  <p>Well done!🎉</p> 
+                </>
+              ) : (
+                <>
+                  <h2>Game over!</h2>
+                  <p>You lose! Better start learning Assembly 😭</p> 
+                </>
+              )
+          ) : (
+                null
+              )
+          }
         </section>
-
+    
         <section className={clsx('section-language-container')}>
             {languagesElement}
         </section>

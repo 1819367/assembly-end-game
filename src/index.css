@@ -41,11 +41,20 @@ p {
 }
 
 .section-game-status {
-  background:#10A95B;
-  padding: 6px 6PX;
+  background: #323232;
+  padding: 6px 6px;
   border-radius: 4px;
   width: auto; 
   margin-block: 1.5rem;
+  min-height: 7.5%;
+}
+
+.section-game-status_won {
+  background:#10A95B;
+}
+
+.section-game-status_lost {
+ background: #BA2A2A;
 }
 
 @media (min-width: 600px) {
@@ -57,6 +66,8 @@ p {
 
   .section-game-status {
     min-width: 450px;
+    min-height: 100px;
+    padding: 12px 12px;
     margin: 1.5rem auto;
   }
 }
