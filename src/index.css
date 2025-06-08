@@ -14,6 +14,7 @@ body {
 main {
   display: flex;
   flex-direction: column;
+  align-items: center;  /*to align in the middle*/
   height: 100vh;
 }
 
@@ -42,11 +43,12 @@ p {
 
 .section-game-status {
   background: #323232;
-  padding: 6px 6px;
+  padding: .5rem;
   border-radius: 4px;
-  width: auto; 
+  max-width: 300px;
+  width: 100%;
   margin-block: 1.5rem;
-  min-height: 7.5%;
+  min-height: 5rem;
 }
 
 .section-game-status_won {
@@ -65,7 +67,8 @@ p {
 }
 
   .section-game-status {
-    min-width: 450px;
+    width: 100%;
+    max-width: 350px;
     min-height: 100px;
     padding: 12px 12px;
     margin: 1.5rem auto;
@@ -146,7 +149,6 @@ p {
 
 @media (min-width: 600px) {
   .section-keyboard {
-      margin: 0 auto;
       max-width: 425px;
   }
 }
@@ -154,14 +156,22 @@ p {
 /* Buttons */
 
 .btn {
-  width: 35px;
-  height: 35px;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: .5em;
   border-radius: 4px;
   border: 1px solid #d7d7d7;
   cursor: pointer;
   font-family: 'Hanken Grotesk', sans-serif;
   font-weight: 600;
   transition: transform 200ms ease-in-out;
+}
+
+@media (min-width: 600px) {
+  .btn {
+    width: 35px;
+    height: 35px;
+  }
 }
 
 .btn:hover,
@@ -188,7 +198,6 @@ p {
   border-radius: 4px;
   padding: 6px 12px;
   min-width: 10em;
-  margin-inline: auto; /*to center the button */
 }
 
 @media (min-width: 600px) {
