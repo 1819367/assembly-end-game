@@ -24,7 +24,6 @@ h1,
 h2,
 p {
   margin: 0;
-  font-size: 1.25rem;
   color: #f9f4da;
   font-weight: 500;
 }
@@ -48,7 +47,7 @@ p {
   max-width: 300px;
   width: 100%;
   margin-block: 1.5rem;
-  min-height: 5rem;
+  min-height: 6rem;
 }
 
 .section-game-status_won {
@@ -61,16 +60,15 @@ p {
 
 @media (min-width: 600px) {
   h1,
-  h2,
-  p {
-  font-size: 1.75rem;
+  h2 {
+  font-size: 1.25rem;
 }
 
   .section-game-status {
     width: 100%;
-    max-width: 350px;
-    min-height: 100px;
-    padding: 12px 12px;
+    max-width: 425px;
+    min-height: 80px;
+    padding: .75em;
     margin: 1.5rem auto;
   }
 }

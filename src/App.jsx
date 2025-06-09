@@ -90,6 +90,28 @@ export default function App() {
     );
 });
 
+ function renderGameStatus() {
+        if (!isGameOver) {
+            return null
+        }
+
+        if (isGameWon) {
+            return (
+                <>
+                    <h2>You win!</h2>
+                    <p>Well done! 🎉</p>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <h2>Game over!</h2>
+                    <p>You lose! Better start learning Assembly 😭</p>
+                </>
+            )
+        }
+    }
+
   return (
       <main>   
 
@@ -106,22 +128,8 @@ export default function App() {
           }  
           )}
         >
-          {isGameOver ? (
-              isGameWon ? (
-                <>
-                  <h2>You win!</h2>
-                  <p>Well done!🎉</p> 
-                </>
-              ) : (
-                <>
-                  <h2>Game over!</h2>
-                  <p>You lose! Better start learning Assembly 😭</p> 
-                </>
-              )
-          ) : (
-                null
-              )
-          }
+          {renderGameStatus()}
+
         </section>
     
         <section className={clsx('section-language-container')}>
