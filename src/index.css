@@ -201,6 +201,11 @@ p {
   background: #EC5D49;
 }
 
+.btn-keyboard:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .btn-new-game {
   margin-top: 36px;
   background: #11B5E5;

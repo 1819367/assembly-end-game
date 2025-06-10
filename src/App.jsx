@@ -83,7 +83,7 @@ export default function App() {
           }
         )}
         onClick={() =>  addGuessedLetter(letter)} //pass the letter as a string
-        disabled={isGuessed}
+        disabled={isGameOver}  //Disable the keyboard when the game is over
         >
           {letter.toUpperCase()}
       </button>
@@ -143,16 +143,16 @@ export default function App() {
         <section className={clsx('section-word-display')}>
             {letterElements}
         </section>
-
+        
         <section className={clsx('section-keyboard')}>
-          {keyboardElements}
+          {keyboardElements} 
         </section>
 
       { isGameOver ? 
         <button aria-label='Start a new game' className={clsx('btn', 'btn-new-game')}>
             New Game
         </button> :
-        null}
+           null}
 
       </main>
   )
