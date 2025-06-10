@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import { languagesData } from './languages';
 import clsx from 'clsx'
+import { getFarewellText } from './utils';
 
 export default function App() {
   // State values
@@ -12,14 +13,13 @@ export default function App() {
   //Derived Values 
   const wrongGuessCount = 
     guessedLetters.filter(letter => !currentWord.includes(letter)).length;
-
   const isGameWon = 
     currentWord.split("").every(letter => guessedLetters.includes(letter));
-  
   const isGameLost = 
     wrongGuessCount >= languagesData.length - 1;
-
   const isGameOver = isGameWon || isGameLost;
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
+  const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
   
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -91,26 +91,29 @@ export default function App() {
 });
 
  function renderGameStatus() {
-        if (!isGameOver) {
-            return null
+        if (!isGameOver && isLastGuessIncorrect) {
+            return (
+            <>
+              {getFarewellText(languagesData[wrongGuessCount - 1].name)}
+            </>
+             )
         }
-
         if (isGameWon) {
-            return (
-                <>
-                    <h2>You win!</h2>
-                    <p>Well done! 🎉</p>
-                </>
+            return ( 
+            <>  <h2>You win!</h2>
+                <p>Well done! 🎉</p>
+            </>
             )
-        } else {
+        } 
+        if (isGameLost) {
             return (
-                <>
-                    <h2>Game over!</h2>
-                    <p>You lose! Better start learning Assembly 😭</p>
-                </>
+            <>  <h2>Game over!</h2>
+                <p>You lose! Better start learning Assembly 😭</p>
+            </>
             )
         }
-    }
+        return null
+   }
 
   return (
       <main>   
@@ -124,11 +127,12 @@ export default function App() {
             'section-game-status',
           {
             'section-game-status_won': isGameWon,
-            'section-game-status_lost': isGameLost
+            'section-game-status_lost': isGameLost,
+            'section-game-status_farewell': !isGameOver && isLastGuessIncorrect
           }  
           )}
         >
-          {renderGameStatus()}
+           {renderGameStatus()}
 
         </section>
     
