@@ -25,6 +25,13 @@ export default function App() {
   // Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
 
+  //start new game for new game button
+  function startNewGame () {
+      console.log('start new game')
+      setCurrentWord(getRandomWord())
+      setGuessedLetters([])
+  }
+
   //create a new array to hold the guessed letters, prevent duplicate letters
   function addGuessedLetter(letter) {
     setGuessedLetters(prevLetters => {
@@ -169,7 +176,11 @@ export default function App() {
         </section>
 
       { isGameOver ? 
-        <button aria-label='Start a new game' className={clsx('btn', 'btn-new-game')}>
+        <button 
+          aria-label='Start a new game' 
+          className={clsx('btn', 'btn-new-game')}
+          onClick={startNewGame}
+        >
             New Game
         </button> :
            null}
