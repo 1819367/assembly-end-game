@@ -3,11 +3,11 @@ import './App.css';
 import Header from './components/Header';
 import { languagesData } from './languages';
 import clsx from 'clsx'
-import { getFarewellText } from './utils';
+import { getFarewellText, getRandomWord } from './utils';
 
 export default function App() {
   // State values
-  const [currentWord, setCurrentWord] = useState('react') //initialize state
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord()) //updated for lazy state initialization
   const [ guessedLetters, setGuessedLetters ] = useState([]) //initialize an empty array
 
   //Derived Values 
