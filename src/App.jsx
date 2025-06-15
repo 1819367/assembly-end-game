@@ -9,7 +9,7 @@ export default function App() {
   // State values
   const [currentWord, setCurrentWord] = useState(() => getRandomWord()) //updated for lazy state initialization
   const [ guessedLetters, setGuessedLetters ] = useState([]) //initialize an empty array
-
+  console.log(currentWord)
   //Derived Values 
   const numGuessesLeft = languagesData.length - 1
   const wrongGuessCount = 
@@ -65,14 +65,26 @@ export default function App() {
 })
 
   //turn the current word into an array, and map over the letters, set the index as the key prop
-  const letterElements = [...currentWord].map((letter, index) =>  (
-    <span key={index} className={clsx('span-current-word')}>
-      {guessedLetters.includes(letter) ? letter.toUpperCase() : <span> </span>} 
-    </span> 
-    ));
+  const letterElements = [...currentWord].map((letter, index) =>  {
+    const shouldRevealLetter = isGameLost || guessedLetters.includes(letter)
+    const letterClassName = clsx(
+      "span-letter",
+      {
+      "span-letter_missing": isGameLost && !guessedLetters.includes(letter) 
+      }
+    )
+    return (
+      <span 
+          key={index}
+          className={letterClassName}
+          >
+          {shouldRevealLetter ? letter.toUpperCase() : ' '} 
+      </span> 
+    )
+  });
 
   //display the keyboard, change to uppercase
-    const keyboardElements = [...alphabet].map((letter) => {
+  const keyboardElements = [...alphabet].map((letter) => {
     //update the color of the keyboard key when the letter is correct or incorrect
     const isGuessed = guessedLetters.includes(letter); //Has this letter been guessed yet?
     const isCorrect = isGuessed && currentWord.includes(letter); //The letter has been guessed and it is in the current word

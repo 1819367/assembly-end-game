@@ -133,10 +133,9 @@ p {
   margin-bottom: 36px;
 } 
 
-.span-current-word {
+.span-letter {
   width: 40px;
   height: 40px;
-  background: #323232;
   border-bottom: 1px solid #f9f4da;
   display: flex;
   justify-content: center;
@@ -144,6 +143,11 @@ p {
   font-weight: 700;
   font-size: 1.125rem;
   padding: .5em;
+  background: #323232;
+}
+
+.span-letter_missing {
+  background: #EC5D49;
 }
 
 .section-keyboard {
