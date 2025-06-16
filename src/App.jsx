@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import { languagesData } from './languages';
-import clsx from 'clsx'
+import clsx from 'clsx';
 import { getFarewellText, getRandomWord } from './utils';
+import Confetti from 'react-confetti';
 
 export default function App() {
   // State values
   const [currentWord, setCurrentWord] = useState(() => getRandomWord()) //updated for lazy state initialization
   const [ guessedLetters, setGuessedLetters ] = useState([]) //initialize an empty array
-  console.log(currentWord)
+  // console.log(currentWord) //for testing
   //Derived Values 
   const numGuessesLeft = languagesData.length - 1
   const wrongGuessCount = 
@@ -138,7 +139,12 @@ export default function App() {
 
   return (
       <main>   
-
+        {
+          isGameWon && 
+          <Confetti 
+            recycle={false}
+            numberOfPieces={1000}
+          />}
         <Header />
 
         <section 
